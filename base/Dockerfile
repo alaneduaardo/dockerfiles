@@ -14,7 +14,7 @@
 # License:   MIT
 #################################################################
 
-FROM tianon/centos:6.5
+FROM centos:centos6
 MAINTAINER Alan Eduardo <alan_eduardo@outlook.com.br>
 
 ENV SERF_SERVER 172.17.42.1

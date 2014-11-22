@@ -1,9 +1,13 @@
 FROM golang:latest
 MAINTAINER Anielkis Herrera <d76fe15e@opayq.com>
 
-ENV VERSION 7354ad8e95b4d068f28ae448e1a163fcbb320cdf
+ENV VERSION 7e2b03e20f4ab74764e41833e7814a1661b7e4c2
 
-RUN mkdir -p /var/cache/drone /var/lib/drone && apt-get update && apt-get install -yq mercurial git bzr libsqlite3-dev sqlite3 build-essential
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+
+RUN sh -c "echo deb https://get.docker.com/ubuntu docker main /etc/apt/sources.list.d/docker.list"
+
+RUN mkdir -p /var/cache/drone /var/lib/drone && apt-get update && apt-get install -yq mercurial git bzr libsqlite3-dev sqlite3 build-essential docker.io
 
 RUN go get github.com/tools/godep &&  git clone git://github.com/drone/drone.git /go/src/github.com/drone/drone
 WORKDIR /go/src/github.com/drone/drone
